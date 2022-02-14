@@ -21,3 +21,4 @@ jobs:
       - run: echo "$SUPERSECRET"
       - run: gpg --quiet --batch --yes --decrypt --passphrase="$LARGE_SECRET_PASSPHRASE" \
              --output $HOME/my_secret.json test.txt.gpg
+      - run: cat $HOME/my_secret.json

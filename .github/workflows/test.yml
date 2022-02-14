@@ -20,5 +20,5 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
       - run: echo "$SUPERSECRET"
-      - run: gpg --quiet --batch --yes --decrypt --passphrase="$LARGE_SECRET_PASSPHRASE" --output $HOME/my_secret.json config.json.gpg
-      - run: docker -v
+      - run: gpg --quiet --batch --yes --decrypt --passphrase="$LARGE_SECRET_PASSPHRASE" --output $PWD/config.json config.json.gpg
+      - run: docker run --rm -v $PWD:/workspace -v $PWD/config.json:/kaniko/.docker/config.json:ro gcr.io/kaniko-project/executor:latest --dockerfile=Dockerfile --destination=devendradk/busybox-kaniko:v1.0.2
